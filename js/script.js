@@ -106,7 +106,7 @@ function enviarPedido(){
     }
 
     //enviar pedido
-    const phone = "11951354414";
+    const phone = "5511951354414";
     let mensagem = 'Olá, gostaria de fazer um pedido:\n\n';
 
     carrinho.forEach(item => {
