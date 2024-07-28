@@ -12,10 +12,26 @@ const btnFinalizar = document.getElementById("checkout-btn");
 const carrinho = [];
 
 function addCarrinho(event){
+    event.preventDefault();
     const addProduct = event.target.closest(".add-to-cart-btn");
     const nameProduct = addProduct.getAttribute("data-name");
     const priceProduct = parseFloat(addProduct.getAttribute("data-price"));
     //alert("Produto: " + nameProduct + " Preço: " + priceProduct);
+
+    if(addProduct){
+        Toastify({
+            text: "Produto adicionado ao carrinho",
+            duration: 3000,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+            position: "right", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+              background: "#16a34a",
+            },
+            onClick: function(){} // Callback after click
+          }).showToast(); 
+    };
 
     //verificar se o item está no carrinho
     const itemNoCarrinho = carrinho.find(item => item.nameProduct === nameProduct)
@@ -38,8 +54,10 @@ function atualizarCarrinho(){
     const cartCount = document.getElementById("cart-count");
     const cartTotal = document.getElementById("cart-total");
     const cartItems = document.getElementById("cart-items");
+    const taxaCash = parseFloat(document.getElementById("taxa-cash").innerText);
+
     cartItems.innerHTML = ""; //limpa html
-    let totalCompra = 0;
+    let totalCompra = taxaCash;
 
     carrinho.forEach(item => {
         const cartElement = document.createElement("div"); //criar nova div
@@ -48,9 +66,9 @@ function atualizarCarrinho(){
         cartElement.innerHTML = `
         <div class="flex items-center justify-between">
             <div>
-            <p class="font-medium">Produto ${item.nameProduct}</p>
-            <p class="font-medium">Qantidade ${item.quantity}</p>
-            <p class="font-medium mt-2">R$ ${item.priceProduct.toFixed(2)}</p>
+            <p class="font-medium text-base">Produto ${item.nameProduct}</p>
+            <p class="font-medium text-base">Qantidade ${item.quantity}</p>
+            <p class="font-medium text-base mt-2">R$ ${item.priceProduct.toFixed(2)}</p>
             </div>
             <div>
                 <button class="btn-remove" data-remove="${item.nameProduct}">Remover</button>
@@ -61,8 +79,6 @@ function atualizarCarrinho(){
         cartTotal.innerHTML = totalCompra.toFixed(2);
         // total carrinho
         cartCount.innerHTML = carrinho.length;
-
-
         cartItems.appendChild(cartElement);
     });
     // Adiciona evento de click aos botões "Remover"
@@ -72,13 +88,14 @@ function atualizarCarrinho(){
 }
 
 function removeCarrinho(event){
+    event.preventDefault();
     const btnRemove = event.target.getAttribute('data-remove');
+    const precoTotal = document.getElementById("cart-total");
     
     const index = carrinho.findIndex(item => item.nameProduct === btnRemove);
     
     if(index !== -1){
         const item = carrinho[index];
-        
         if(item.quantity > 1){
             item.quantity -= 1; // Atualiza a quantidade
             atualizarCarrinho();
@@ -88,20 +105,20 @@ function removeCarrinho(event){
             atualizarCarrinho();
         }
     }
-    //atualizarCarrinho(); // Atualiza o carrinho
 }
 
 function enviarPedido(){
+    const observacaoCliente = document.getElementById("observacao");
+    const enderecoCliente = document.getElementById("address");
     const modalAlert = document.getElementById("address-warn");
-    const inputAddress = document.getElementById("address");
     //verificando carrinho
     if(carrinho.length === 0) return;
-    if(inputAddress.value === ""){
+    if(enderecoCliente.value === ""){
         modalAlert.classList.remove("hidden");
-        inputAddress.classList.add("border-red-500");
+        enderecoCliente.classList.add("border-red-500");
         return;
     }else{
-        inputAddress.classList.remove("border-red-500");
+        enderecoCliente.classList.remove("border-red-500");
         modalAlert.classList.add("hidden");
     }
 
@@ -115,8 +132,11 @@ function enviarPedido(){
         mensagem += `Preço: R$ ${item.priceProduct.toFixed(2)}\n\n`;
     });
 
+    mensagem += `Observaçãos: ${observacaoCliente.value}\n\n`;
+
     const totalCompra = carrinho.reduce((total, item) => total + item.priceProduct * item.quantity, 0);
     mensagem += `Total: R$ ${totalCompra.toFixed(2)}\n\n`;
+    mensagem += `Endereço de entrega: ${enderecoCliente.value}\n\n`;
     mensagem += 'Por favor, confirme o recebimento deste pedido.';
 
     const encodedMessage = encodeURIComponent(mensagem);
@@ -133,17 +153,15 @@ function checkOpenRestaurant(){
     const overlay = document.getElementById("overlay");
     const data = new Date();
     const hora = data.getHours();
-    if(hora >= 17 && hora < 22){
-        horaOpen.classList.remove("bg-red-600");
-        horaOpen.classList.add("bg-green-600");
-        overlay.classList.add("hidden");
-        //horaOpen.textContent = "Seg a Dom - 18:00 as 22:00";
-    }else {
-        horaOpen.classList.remove("bg-green-600");
-        horaOpen.classList.add("bg-red-600");
-        overlay.classList.remove("hidden");
-        //horaOpen.textContent = "Fechado";
-    }
+    // if(hora >= 17 && hora < 22){
+    //     horaOpen.classList.remove("bg-red-600");
+    //     horaOpen.classList.add("bg-green-600");
+    //     overlay.classList.add("hidden");
+    // }else {
+    //     horaOpen.classList.remove("bg-green-600");
+    //     horaOpen.classList.add("bg-red-600");
+    //     overlay.classList.remove("hidden");
+    // }
 }
 checkOpenRestaurant();
 

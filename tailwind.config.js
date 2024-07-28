@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: ["./**/*.{html,js}"],
   theme: {
     fontFamily:{
@@ -7,7 +8,7 @@ module.exports = {
     },
     extend:{
       backgroundImage:{
-        "home": "url('/img/bg.png')"
+        "home": "url('/img/Banner-para-pedidos-de-lanches-moderno-laranja1.jpg')"
       }
     },
   },
