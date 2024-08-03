@@ -50,7 +50,7 @@ ul li a:hover{
         flex-direction: column;
     }
     .bg-home{
-        background-image: url("/img/Lanches-Salgados-Coxinha.jpg");
+        background-image: url("../img/Lanches-Salgados-Coxinha.jpg");
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
