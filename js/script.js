@@ -219,6 +219,7 @@ function enviarPedido() {
     const enderecoCliente = document.getElementById("address");
     const modalAlert = document.getElementById("address-warn");
     const formaPagamento = document.getElementById("payment-method").value;
+    const taxaEntrega = parseFloat(document.getElementById("taxa-cash").innerText);
     // const opcaoSelecionada = formaPagamento.options[formaPagamento.selectedIndex];
     // const textoOpcao = opcaoSelecionada.text;
 
@@ -245,7 +246,8 @@ function enviarPedido() {
 
     mensagem += `Observaçãos: ${observacaoCliente.value}\n\n`;
 
-    const totalCompra = carrinho.reduce((total, item) => total + item.priceProduct * item.quantity, 0);
+    const totalCompra = carrinho.reduce((total, item) => total + taxaEntrega + item.priceProduct * item.quantity, 0);
+    mensagem += `Taxa Entrega: R$ ${taxaEntrega.toFixed(2)}\n\n`;
     mensagem += `Total: R$ ${totalCompra.toFixed(2)}\n\n`;
     mensagem += `Forma de Pagamento: ${formaPagamento}\n\n`;
     mensagem += `Endereço de entrega: ${enderecoCliente.value}\n\n`;
