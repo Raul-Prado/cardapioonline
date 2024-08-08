@@ -55,8 +55,8 @@ ul li a:hover {
         width: 100% !important; 
         color: white;
     }
-    .bg-home {
-        background-image: url("/img/Lanches-Salgados-Coxinha.jpg");
+    .bg-home{
+        background-image: url("img/Lanches-Salgados-Coxinha.jpg");
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
