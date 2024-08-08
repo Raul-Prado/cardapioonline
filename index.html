@@ -23,11 +23,11 @@
     <!-- header -->
     <header class="w-full h-[420px] bg-zinc-900 bg-home bg-cover bg-center">
         <div class="w-full h-full flex flex-col justify-center items-center">
-            <img src="./img/png-clipart-burger-king-wikipedia-logo-hamburger-restaurant-burger-king-burger-king-logo.png"
+            <img src="img/Logotipo-do-norte-restaurante.jpg"
                 class="w-32 h-32 rounded-full shadow-lg hover:scale-110 duration-200" alt="Logo Hamburguer"
                 title="Logo Hamburguer">
-            <h1 class="text-4xl mt-4 mb-2 font-bold text-white">Burger King's</h1>
-            <span class="text-white font-medium">R. Barra do Úna, 235 - Res. Furtuna, Itaquaquecetuba - SP,
+            <h1 class="text-4xl mt-4 mb-2 font-bold text-white">King's Do Norte</h1>
+            <span class="text-white font-medium px-10 text-center">R. Barra do Úna, 235 - Res. Furtuna, Itaquaquecetuba - SP,
                 08598-717</span>
             <div class="bg-green-600 px-4 py-1 rounded-lg mt-5" id="data-span">
                 <span class="text-white font-medium">Seg a Dom - 18:00 as 22:00</span>
@@ -55,7 +55,7 @@
         </ul>
     </nav>
     <!-- produtos -->
-    <h2 class="md:text-4xl font-bold text-center mt-9 mb-10">Cardapio</h2>
+    <h2 class="md:text-4xl font-bold text-center mt-9 mb-10">Cardápio</h2>
     <div id="menu">
         <main class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 max-auto max-w-8xl px-10 mb-16">
             <!-- Hamburguer -->
@@ -282,7 +282,7 @@
             </div>
             <!-- Porções -->
             <div class="flex gap-2">
-                <img src="./img/porcoes-batata.jpg" alt=""
+                <img src="./img/porcoes-batata-olions.jpg" alt=""
                     class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-300">
                 <div>
                     <p class="font-bold">Batata Frita</p>
@@ -519,13 +519,20 @@
         </div>
     </div>
     <!-- carrinho -->
-    <footer class="w-full bg-red-600 py-3 fixed bottom-0 z-40 flex items-center justify-center">
+    <div class="w-full carrinho py-3 fixed bottom-0 sticky flex items-center justify-center">
         <button class="flex items-center gap-2 text-white font-bold" id="cart-btn">
-            (<span id="cart-count">0</span>)Meu carrinho
+            (<span id="cart-count">0</span>) Meu carrinho
             <i class="fa fa-cart-plus text-lg text-white"></i>
         </button>
+    </div>
+    <footer class="w-full py-3 z-50 bottom-0 flex items-center justify-center ">
+        <a class="text-white font-medium px-10 text-center" href="https://wa.me/5511976696658" title="Chama no zap" target="_blank">
+            Desenvolvido por <span style="font-size:100%;">💻</span> GrupoInovaTech 2024 
+            <span style="font-size:100%;">☕</span> Feito com Amor <span style="font-size:100%;">💛</span>
+        </a>
     </footer>
-    <script src="/js/script.js" defer></script>
+    <script src="js/script.js" defer></script>
+    <script src="js/geo.js" defer></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js" defer></script>
 </body>
 
