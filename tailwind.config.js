@@ -8,7 +8,7 @@ module.exports = {
     },
     extend:{
       backgroundImage:{
-        "home": "url('./img/Banner-para-pedidos-de-lanches-moderno-laranja1.jpg')"
+        "home": "url('../img/Banner-para-pedidos-de-lanches-moderno-laranja1.jpg')"
       }
     },
   },
